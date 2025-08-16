@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sunshine 🌻</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Cinzel:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 30%, #FFF8DC 70%, #F0E68C 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+        
+        .clouds {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><filter id="noiseFilter"><feTurbulence baseFrequency="0.9" numOctaves="4" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/></filter></defs><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.1"/></svg>') repeat-x;
+            z-index: 0;
+        }
+        
+        .garden {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .stone-pathway {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: 
+                radial-gradient(ellipse 60% 25% at 50% 85%, #D2B48F 0%, #F5DEB3 15%, transparent 35%),
+                linear-gradient(to top, #228B22 0%, #32CD32 25%, #90EE90 45%, #98FB98 65%, transparent 85%);
+            border-radius: 50% 50% 0 0 / 80px 80px 0 0;
+            z-index: 1;
+            box-shadow: 0 -15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stone-pathway::before {
+            content: '';
+            position: absolute;
+            bottom: 8%;
+            left: 25%;
+            right: 25%;
+            height: 20%;
+            background: 
+                radial-gradient(ellipse at 25% 50%, #D2B48F 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 40%, #DEB887 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 60%, #F5DEB3 0%, transparent 50%);
+            border-radius: 15px;
+            opacity: 0.9;
+        }
+        
+        .flower-garden {
+            position: absolute;
+            bottom: 12%;
+            left: 8%;
+            right: 8%;
+            height: 45%;
+            z-index: 2;
+        }
+        
+        .flower-bed {
+            position: absolute;
+            border-radius: 50%;
+            animation: gentleBloom 6s ease-in-out infinite;
+        }
+        
+        @keyframes gentleBloom {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+            50% { transform: scale(1.05) rotate(1deg); opacity: 1; }
+        }
+        
+        .flower {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: floralSway 5s ease-in-out infinite;
+            z-index: 3;
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        .flower:hover {
+            transform: scale(1.2) !important;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)) brightness(1.2);
+        }
+        
+        @keyframes floralSway {
+            0%, 100% { transform: rotate(-1deg) translateY(0px); }
+            25% { transform: rotate(2deg) translateY(-3px); }
+            50% { transform: rotate(0deg) translateY(-5px); }
+            75% { transform: rotate(-1deg) translateY(-2px); }
+        }
+        
+        .royal-column {
+            position: absolute;
+            font-size: 5rem;
+            z-index: 2;
+            animation: columnGlow 4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+        
+        @keyframes columnGlow {
+            0% { filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2)) brightness(1); }
+            100% { filter: drop-shadow(0 8px 25px rgba(255,215,0,0.3)) brightness(1.1); }
+        }
+        
+        .enchanted-tree {
+            position: absolute;
+            font-size: 5rem;
+            z-index: 1;
+            animation: treeWisper 8s ease-in-out infinite;
+            filter: drop-shadow(0 3px 10px rgba(0,100,0,0.3));
+        }
+        
+        @keyframes treeWisper {
+            0%, 100% { transform: rotate(-0.5deg); filter: drop-shadow(0 3px 10px rgba(0,100,0,0.3)); }
+            50% { transform: rotate(0.5deg); filter: drop-shadow(0 5px 15px rgba(0,150,0,0.4)); }
+        }
+        
+        .magical-element {
+            position: absolute;
+            z-index: 4;
+            animation: magicalFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes magicalFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-10px) rotate(5deg); opacity: 1; }
+        }
+        
+        .butterfly {
+            position: absolute;
+            font-size: 2rem;
+            z-index: 4;
+            animation: butterflyDance 8s ease-in-out infinite;
+        }
+        
+        @keyframes butterflyDance {
+            0% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -40px) scale(1.1); }
+            50% { transform: translate(-40px, -80px) scale(0.9); }
+            75% { transform: translate(-50px, -30px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        
+        .letter-container {
+            position: relative;
+            z-index: 10;
+            perspective: 1000px;
+        }
+        
+        .envelope {
+            width: 350px;
+            height: 220px;
+            background: linear-gradient(145deg, #FFF8DC, #F5DEB3, #DEB887);
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.15),
+                inset 0 2px 4px rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+            animation: royalFloat 4s ease-in-out infinite;
+            border: 2px solid #DAA520;
+        }
+        
+        @keyframes royalFloat {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-15px) rotateY(2deg); }
+        }
+        
+        .envelope:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.2),
+                inset 0 3px 6px rgba(255,255,255,0.4);
+        }
+        
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-top: 110px solid #CD853F;
+            border-radius: 15px 15px 0 0;
+            transition: all 0.6s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .envelope.opened::before {
+            transform: rotateX(180deg);
+        }
+        
+        .envelope-seal {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #FFD700, #DAA520);
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+        
+        .envelope-seal::before {
+            content: '👑';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+        }
+        
+        .envelope-label {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #8B4513;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        .letter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 450px;
+            max-width: 95vw;
+            background: linear-gradient(145deg, #FFFEF7, #FFF8DC);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 
+                0 30px 80px rgba(0,0,0,0.3),
+                inset 0 2px 4px rgba(255,255,255,0.8);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 15;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 3px solid #DAA520;
+        }
+        
+        .letter.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 2px solid #DAA520;
+            padding-bottom: 20px;
+        }
+        
+        .letter-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: #B8860B;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+        
+        .letter-subtitle {
+            font-size: 1.2rem;
+            color: #8B4513;
+            font-style: italic;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 500;
+        }
+        
+        .letter-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #2F4F2F;
+            text-align: left;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: linear-gradient(145deg, #FFD700, #DAA520);
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #8B4513;
+            transition: all 0.3s ease;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        
+        .close-btn:hover {
+            background: linear-gradient(145deg, #DAA520, #B8860B);
+            transform: scale(1.1);
+        }
+        
+        .signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #B8860B;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+        
+        .magical-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .particle {
+            position: absolute;
+            animation: sparkleRise 6s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkleRise {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(50vh) rotate(180deg) scale(1);
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(25,25,112,0.8), rgba(72,61,139,0.8));
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 14;
+        }
+        
+        .backdrop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .envelope {
+                width: 300px;
+                height: 180px;
+            }
+            
+            .envelope::before {
+                border-left-width: 150px;
+                border-right-width: 150px;
+                border-top-width: 90px;
+            }
+            
+            .letter {
+                padding: 35px 25px;
+                width: 350px;
+            }
+            
+            .letter-title {
+                font-size: 2.2rem;
+            }
+            
+            .flower, .magical-element {
+                font-size: 2rem;
+            }
+            
+            .enchanted-tree {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clouds"></div>
+    
+    <div class="garden">
+        <div class="stone-pathway"></div>
+        
+        <!-- Background Trees (properly positioned) -->
+        <div class="enchanted-tree" style="bottom: 45%; left: 5%;">🌳</div>
+        <div class="enchanted-tree" style="bottom: 40%; right: 8%;">🌲</div>
+        <div class="enchanted-tree" style="bottom: 50%; left: 2%;">🌳</div>
+        <div class="enchanted-tree" style="bottom: 42%; right: 3%;">🌲</div>
+        
+        <div class="flower-garden">
+            <!-- Main Flower Arrangements -->
+            <div class="flower" style="bottom: 60%; left: 15%;">🌹</div>
+            <div class="flower" style="bottom: 55%; left: 25%;">🌷</div>
+            <div class="flower" style="bottom: 65%; left: 35%;">🌺</div>
+            <div class="flower" style="bottom: 50%; left: 45%;">🌸</div>
+            <div class="flower" style="bottom: 60%; left: 55%;">🌻</div>
+            <div class="flower" style="bottom: 58%; left: 65%;">🌹</div>
+            <div class="flower" style="bottom: 62%; left: 75%;">🌷</div>
+            <div class="flower" style="bottom: 52%; left: 85%;">🌺</div>
+            
+            <!-- Second Row -->
+            <div class="flower" style="bottom: 35%; left: 10%;">🌸</div>
+            <div class="flower" style="bottom: 40%; left: 20%;">🌻</div>
+            <div class="flower" style="bottom: 32%; left: 30%;">🌹</div>
+            <div class="flower" style="bottom: 38%; left: 40%;">🌷</div>
+            <div class="flower" style="bottom: 42%; left: 60%;">🌺</div>
+            <div class="flower" style="bottom: 36%; left: 70%;">🌸</div>
+            <div class="flower" style="bottom: 40%; left: 80%;">🌻</div>
+            <div class="flower" style="bottom: 34%; left: 90%;">🌹</div>
+            
+            <!-- Front Garden Border -->
+            <div class="flower" style="bottom: 15%; left: 5%;">🌷</div>
+            <div class="flower" style="bottom: 18%; left: 15%;">🌺</div>
+            <div class="flower" style="bottom: 12%; left: 25%;">🌸</div>
+            <div class="flower" style="bottom: 20%; left: 35%;">🌻</div>
+            <div class="flower" style="bottom: 16%; left: 45%;">🌹</div>
+            <div class="flower" style="bottom: 14%; left: 55%;">🌷</div>
+            <div class="flower" style="bottom: 22%; left: 65%;">🌺</div>
+            <div class="flower" style="bottom: 18%; left: 75%;">🌸</div>
+            <div class="flower" style="bottom: 16%; left: 85%;">🌻</div>
+            <div class="flower" style="bottom: 20%; left: 95%;">🌹</div>
+        </div>
+        
+        <!-- Magical Elements -->
+        <div class="magical-element" style="top: 25%; left: 20%; font-size: 1.5rem; animation-delay: 0s;">✨</div>
+        <div class="magical-element" style="top: 35%; right: 25%; font-size: 1.8rem; animation-delay: 1s;">🌟</div>
+        <div class="magical-element" style="bottom: 45%; left: 15%; font-size: 1.6rem; animation-delay: 2s;">✨</div>
+        <div class="magical-element" style="bottom: 30%; right: 20%; font-size: 1.7rem; animation-delay: 0.5s;">🌟</div>
+        <div class="magical-element" style="top: 40%; left: 80%; font-size: 1.5rem; animation-delay: 1.5s;">✨</div>
+        <div class="magical-element" style="bottom: 55%; right: 40%; font-size: 1.8rem; animation-delay: 2.5s;">🌟</div>
+        
+        <!-- Butterflies -->
+        <div class="butterfly" style="top: 30%; left: 30%; animation-delay: 0s;">🦋</div>
+        <div class="butterfly" style="top: 40%; right: 25%; animation-delay: 2s;">🦋</div>
+        <div class="butterfly" style="bottom: 50%; left: 20%; animation-delay: 4s;">🦋</div>
+        <div class="butterfly" style="top: 50%; right: 35%; animation-delay: 6s;">🦋</div>
+        
+        <div class="letter-container">
+            <div class="envelope" id="envelope">
+                <div class="envelope-seal"></div>
+                <div class="envelope-label">Click to read ✨</div>
+            </div>
+        </div>
+        
+        <div class="magical-particles" id="particles"></div>
+    </div>
+    
+    <div class="backdrop" id="backdrop"></div>
+    
+    <div class="letter" id="letter">
+        <button class="close-btn" id="closeBtn">✕</button>
+        <div class="letter-header">
+            <div class="letter-title">For My Sunshine</div>
+            <div class="letter-subtitle">A message from your favorite boy ☀️</div>
+        </div>
+        <div class="letter-content">
+            Hey Sunshine, I want you to know how proud I am of you and the fact that you grinded through and finished your internship strong. I tell you this all the time but I look up to you in so many regards and your strength and mindset is one of them. 
+            <br><br>
+            You're a wonderful woman and will even be a more wonderful president for BWIT!!! I'll always be here in your corner supporting my superwoman!!!
+            <br><br>
+            Congrats babe!! CANT WAIT TO SEE YOU IN A COUPLE OF WEEKS AT RHODA'S GRAD!!!
+        </div>
+        <div class="signature">Your number 1 fan ❤️</div>
+    </div>
+    
+    <script>
+        const envelope = document.getElementById('envelope');
+        const letter = document.getElementById('letter');
+        const backdrop = document.getElementById('backdrop');
+        const closeBtn = document.getElementById('closeBtn');
+        const particles = document.getElementById('particles');
+        
+        envelope.addEventListener('click', function() {
+            this.classList.add('opened');
+            setTimeout(() => {
+                backdrop.classList.add('show');
+                letter.classList.add('show');
+                createMagicalEffects();
+            }, 400);
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            letter.classList.remove('show');
+            backdrop.classList.remove('show');
+            setTimeout(() => {
+                envelope.classList.remove('opened');
+            }, 400);
+        });
+        
+        backdrop.addEventListener('click', function() {
+            letter.classList.remove('show');
+            backdrop.classList.remove('show');
+            setTimeout(() => {
+                envelope.classList.remove('opened');
+            }, 400);
+        });
+        
+        function createMagicalEffects() {
+            const effects = ['💕', '💖', '💝', '💗', '🌟', '✨', '🌸', '🌺', '🦋', '👑'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.innerHTML = effects[Math.floor(Math.random() * effects.length)];
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    
+                    const colors = ['#ff69b4', '#ffd700', '#ff1493', '#00ffff', '#98fb98', '#dda0dd'];
+                    particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    particles.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.remove();
+                        }
+                    }, 8000);
+                }, i * 150);
+            }
+        }
+        
+        // Continuous magical ambiance
+        setInterval(() => {
+            if (!letter.classList.contains('show')) {
+                const ambientEffects = ['✨', '🌟', '🦋'];
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.innerHTML = ambientEffects[Math.floor(Math.random() * ambientEffects.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.fontSize = Math.random() * 0.8 + 0.8 + 'rem';
+                particle.style.animationDuration = Math.random() * 4 + 8 + 's';
+                particle.style.opacity = '0.6';
+                particles.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 12000);
+            }
+        }, 4000);
+        
+        // Interactive flower effects
+        document.querySelectorAll('.flower').forEach(flower => {
+            flower.addEventListener('click', function() {
+                this.style.animation = 'none';
+                this.style.transform = 'scale(1.3) rotate(10deg)';
+                
+                // Create mini sparkle effect
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = this.offsetLeft + 'px';
+                sparkle.style.top = this.offsetTop + 'px';
+                sparkle.style.fontSize = '1.5rem';
+                sparkle.style.animation = 'sparkleRise 2s ease-out forwards';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '10';
+                this.parentNode.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    this.style.animation = '';
+                    this.style.transform = '';
+                    sparkle.remove();
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
